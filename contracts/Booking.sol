@@ -39,8 +39,8 @@ contract Booking is Context{
     mapping(address => uint256) public bookingCounts;
     mapping(address => mapping(uint256 => BookingData)) public bookings;
 
-    function book(address _bookingToken, address _booker, address _hotel, uint256 _time, uint256 _tokenId) public virtual {
-        _book(_bookingToken, _booker, _hotel, _time, _tokenId);
+    function book(address _bookingToken, address _hotel, address _booker, uint256 _time, uint256 _tokenId) public virtual {
+        _book(_bookingToken, _hotel, _booker, _time, _tokenId);
     }
 
     function getBookData(address _hotel, uint256 index) public view returns(address)
@@ -48,7 +48,7 @@ contract Booking is Context{
         return bookings[_hotel][index].booker;
     }
 
-    function _book(address bookingToken, address _booker, address _hotel, uint256 _time, uint256 _tokenId) internal{
+    function _book(address bookingToken, address _hotel, address _booker,  uint256 _time, uint256 _tokenId) internal{
         uint256 index = bookingCounts[_hotel];
         BookingData memory bookingData = BookingData(
             _booker,
